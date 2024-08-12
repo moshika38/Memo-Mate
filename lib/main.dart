@@ -11,6 +11,7 @@ import 'package:memo_mate/screens/onbording/add_user.dart';
 import 'package:memo_mate/screens/onbording/start_page.dart';
 import 'package:memo_mate/screens/profile_page.dart';
 import 'package:memo_mate/screens/caregory_home_page.dart';
+import 'package:memo_mate/screens/view_nodets_page.dart';
 import 'package:memo_mate/services/user_services.dart';
 
 void main() async {
@@ -64,7 +65,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    _refreshUserData(); // loading page and get all data
+    _refreshUserData(); 
   }
 
   @override

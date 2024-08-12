@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:memo_mate/models/note_model.dart';
 import 'package:memo_mate/services/note_services.dart';
@@ -29,24 +31,24 @@ class _ViewNotesPageState extends State<ViewNotesPage> {
         _cateData = data;
         if (_cateData.isNotEmpty) {
           _noteController.text =
-              NoteServices.getSingleData(widget.cateId)?.note ?? '';
+              NoteServices.getSingleData(widget.cateId)!.note;
         }
       });
-    } catch (error) {
-      print('Error fetching data: $error');
+    } catch (e) {
+      if (kDebugMode) {
+        print('Errors $e');
+      }
     }
   }
 
   Future<void> _updateData() async {
     await NoteServices.updateData(
         widget.cateId, widget.cateNote, _noteController.text);
-    print("up");
   }
 
   Future<void> _addData() async {
     NoteServices.saveData(widget.cateNote, _noteController.text);
-    _noteController.text =
-        NoteServices.getSingleData(widget.cateId)?.note ?? '';
+    _noteController.text = NoteServices.getSingleData(widget.cateId)!.note;
   }
 
   @override
@@ -83,6 +85,29 @@ class _ViewNotesPageState extends State<ViewNotesPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Container(
+              width: double.infinity,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  TextButton(
+                    
+                    onPressed: () {
+                      setState(() {
+                        _noteController.text = "";
+                        NoteServices.updateData(
+                            widget.cateId, widget.cateNote, "");
+                        _refreshCateData();
+                      });
+                    },
+                    child: Text(
+                      "Clear All",
+                      style: AppTextStyle().kDescription,
+                    ),
+                  ),
+                ],
+              ),
+            ),
             SizedBox(
               height: 10,
             ),
