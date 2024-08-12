@@ -4,7 +4,8 @@ A Flutter app for creating and managing notes using the Hive database.
 
 ## Project Preview
 
-![Project Preview](https://github.com/moshika38/Memo-Mate/raw/main/images/preview.png)
+![Memo Mate](https://github.com/user-attachments/assets/9f5a032b-2d3d-4626-88a6-3681c3636b71)
+
 
 ## Features
 
